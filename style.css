@@ -1,0 +1,454 @@
+body {
+  background: #000;
+}
+.container {
+  background-color: black;
+  width: 1370px;
+  height: 650px;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  top: 0px; 
+  overflow: hidden;
+  animation: container-glow 5s linear infinite;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.container::after, .container::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 10px;
+  border-radius: 20px;
+  animation: spin 3s linear infinite;
+}
+
+.container::before {
+  filter: blur(2rem);
+  opacity: 0.6;
+}
+
+@keyframes container-glow {
+  0%, 100% {
+      box-shadow: 0 0 20px rgba(255, 69, 69, 0.3),
+                  0 0 50px rgba(0, 255, 153, 0.3),
+                  0 0 100px rgba(0, 106, 255, 0.3);
+  }
+  50% {
+      box-shadow: 0 0 40px rgba(255, 0, 149, 0.5),
+                  0 0 80px rgba(0, 255, 153, 0.5),
+                  0 0 150px rgba(0, 106, 255, 0.5);
+  }
+}
+
+@keyframes spin {
+  from {
+      --angle: 0deg;
+  }
+  to {
+      --angle: 360deg;
+  }
+}
+@-webkit-keyframes hover {
+  to {
+    translate: 0px 12px;
+  }
+}
+
+@keyframes hover {
+  to {
+    translate: 0px 12px;
+  }
+
+
+}
+
+
+.title {
+  color: white;
+  font-size: 120px; /* 크기 키움 */
+  font-weight: bold;
+  line-height: 1.1; /* 줄 간격 조정 */
+  text-align: left; /* 왼쪽 정렬 유지 */
+  margin-top: 0px; /* 컨테이너 위쪽과 거리 확보 */
+  margin-left: 10px; /* 좌측 여백 추가 */
+}
+
+.card_list {
+  --cards: 9;
+  --curvature: 70deg;
+  counter-reset: cards;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transform: translateY(15vmin);
+  transform-style: preserve-3d;
+}
+.card_list > * {
+  --hue: calc(360deg / var(--cards) * var(--index));
+  --curve: calc(
+  	var(--curvature) * ((var(--index) - (var(--cards) - 1) / 2) / var(--cards))
+  );
+  position: absolute;
+  counter-increment: cards;
+  flex: 0 0 auto;
+  width: 15vw;
+  max-width: 20vh;
+  aspect-ratio: 2/3;
+  transform-origin: 50% 100%;
+  transform: rotate(var(--curve)) translateY(-225%);
+  transition: all 0.3s;
+  position: absolute;
+  cursor: pointer;
+  font-size: 11vmin;
+  transform-style: preserve-3d;
+}
+.card_list > *::before {
+  content: counter(cards);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  color: hsl(var(--hue), 50%, 30%);
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  border: solid 2px hsla(var(--hue), 50%, 40%, 1);
+  background-image: linear-gradient(to bottom right, hsl(var(--hue), 50%, 66%), hsl(calc(var(--hue) - 45deg), 40%, 50%));
+  transition: all 0.3s, translate 0s;
+  box-shadow: 0px 4px 10px hsla(var(--hue), 80%, 80%, 0);
+  border-radius: 4px;
+  text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+.card_list > *:hover {
+  -webkit-animation: hover 1s ease-in-out infinite alternate forwards;
+          animation: hover 1s ease-in-out infinite alternate forwards;
+}
+.card_list > *:hover::before {
+  transform: translateY(-42.5%) rotate(calc(var(--curve) * -1)) scale(1.1);
+  transition-duration: 0.2s;
+  box-shadow: 0px 4px 15px hsla(var(--hue), 80%, 70%, 0.6);
+  border: solid 2px hsla(var(--hue), 80%, 70%, 1);
+  color: hsl(var(--hue), 60%, 80%);
+}
+.card_list:has(li:nth-child(1)) {
+  --cards: 1;
+}
+.card_list > *:nth-child(1) {
+  --index: 0;
+}
+.card_list:has(li:nth-child(2)) {
+  --cards: 2;
+}
+.card_list > *:nth-child(2) {
+  --index: 1;
+}
+.card_list:has(li:nth-child(3)) {
+  --cards: 3;
+}
+.card_list > *:nth-child(3) {
+  --index: 2;
+}
+.card_list:has(li:nth-child(4)) {
+  --cards: 4;
+}
+.card_list > *:nth-child(4) {
+  --index: 3;
+}
+.card_list:has(li:nth-child(5)) {
+  --cards: 5;
+}
+.card_list > *:nth-child(5) {
+  --index: 4;
+}
+.card_list:has(li:nth-child(6)) {
+  --cards: 6;
+}
+.card_list > *:nth-child(6) {
+  --index: 5;
+}
+.card_list:has(li:nth-child(7)) {
+  --cards: 7;
+}
+.card_list > *:nth-child(7) {
+  --index: 6;
+}
+.card_list:has(li:nth-child(8)) {
+  --cards: 8;
+}
+.card_list > *:nth-child(8) {
+  --index: 7;
+}
+.card_list:has(li:nth-child(9)) {
+  --cards: 9;
+}
+.card_list > *:nth-child(9) {
+  --index: 8;
+}
+.card_list:has(li:nth-child(10)) {
+  --cards: 10;
+}
+.card_list > *:nth-child(10) {
+  --index: 9;
+}
+.card_list:has(li:nth-child(11)) {
+  --cards: 11;
+}
+.card_list > *:nth-child(11) {
+  --index: 10;
+}
+.card_list:has(li:nth-child(12)) {
+  --cards: 12;
+}
+.card_list > *:nth-child(12) {
+  --index: 11;
+}
+.card_list:has(li:nth-child(13)) {
+  --cards: 13;
+}
+.card_list > *:nth-child(13) {
+  --index: 12;
+}
+.card_list:has(li:nth-child(14)) {
+  --cards: 14;
+}
+.card_list > *:nth-child(14) {
+  --index: 13;
+}
+.card_list:has(li:nth-child(15)) {
+  --cards: 15;
+}
+.card_list > *:nth-child(15) {
+  --index: 14;
+}
+.card_list:has(li:nth-child(16)) {
+  --cards: 16;
+}
+.card_list > *:nth-child(16) {
+  --index: 15;
+}
+.card_list:has(li:nth-child(17)) {
+  --cards: 17;
+}
+.card_list > *:nth-child(17) {
+  --index: 16;
+}
+.card_list:has(li:nth-child(18)) {
+  --cards: 18;
+}
+.card_list > *:nth-child(18) {
+  --index: 17;
+}
+.card_list:has(li:nth-child(19)) {
+  --cards: 19;
+}
+.card_list > *:nth-child(19) {
+  --index: 18;
+}
+.card_list:has(li:nth-child(20)) {
+  --cards: 20;
+}
+.card_list > *:nth-child(20) {
+  --index: 19;
+}
+.card_list:has(li:nth-child(21)) {
+  --cards: 21;
+}
+.card_list > *:nth-child(21) {
+  --index: 20;
+}
+.card_list:has(li:nth-child(22)) {
+  --cards: 22;
+}
+.card_list > *:nth-child(22) {
+  --index: 21;
+}
+.card_list:has(li:nth-child(23)) {
+  --cards: 23;
+}
+.card_list > *:nth-child(23) {
+  --index: 22;
+}
+.card_list:has(li:nth-child(24)) {
+  --cards: 24;
+}
+.card_list > *:nth-child(24) {
+  --index: 23;
+}
+.card_list:has(li:nth-child(25)) {
+  --cards: 25;
+}
+.card_list > *:nth-child(25) {
+  --index: 24;
+}
+.card_list:has(li:nth-child(26)) {
+  --cards: 26;
+}
+.card_list > *:nth-child(26) {
+  --index: 25;
+}
+.card_list:has(li:nth-child(27)) {
+  --cards: 27;
+}
+.card_list > *:nth-child(27) {
+  --index: 26;
+}
+.card_list:has(li:nth-child(28)) {
+  --cards: 28;
+}
+.card_list > *:nth-child(28) {
+  --index: 27;
+}
+.card_list:has(li:nth-child(29)) {
+  --cards: 29;
+}
+.card_list > *:nth-child(29) {
+  --index: 28;
+}
+.card_list:has(li:nth-child(30)) {
+  --cards: 30;
+}
+.card_list > *:nth-child(30) {
+  --index: 29;
+}
+.card_list:has(li:nth-child(31)) {
+  --cards: 31;
+}
+.card_list > *:nth-child(31) {
+  --index: 30;
+}
+.card_list:has(li:nth-child(32)) {
+  --cards: 32;
+}
+.card_list > *:nth-child(32) {
+  --index: 31;
+}
+
+/* 카드 컨텐츠 스타일 추가 */
+.card-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  opacity: 0;
+  transition: transform 0.6s, opacity 0.6s;
+}
+
+.card-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.card-content p {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-size: 1.4rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* 카드 호버 및 클릭 효과 수정 */
+.card_list > *.active::before {
+  transform: rotateY(180deg);
+  opacity: 0;
+}
+
+.card_list > *.active .card-content {
+  transform: rotateY(0);
+  opacity: 1;
+}
+
+/* 팝업 스타일 수정 */
+.popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  width: auto;
+  max-width: 90vw;
+  background: transparent;
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1000;
+}
+
+.popup-container.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-content {
+  position: relative;
+}
+
+.popup-content img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+}
+
+/* 텍스트 숨기기 */
+.popup-text {
+  display: none;
+}
+
+.close-popup {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  color: black;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1001;
+}
+
+.close-popup:hover {
+  background: #f0f0f0;
+}
+
+/* 배경 오버레이 스타일 */
+.popup-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: -1;
+}

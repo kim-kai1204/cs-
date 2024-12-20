@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Playing Cards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<link href="https://assets.codepen.io/2509128/style.css" rel="stylesheet">
+
+<style>
+*, *::before, *::after {
+  font-family: inherit;
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 62.5%;
+}
+
+html body {
+  font-size: 1.6rem;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+ul {
+  list-style: none;
+}
+
+a, a:link, a:visited {
+  text-decoration: none;
+}
+
+.home-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.6rem;
+  transition: background-color 0.3s;
+}
+
+.home-button:hover {
+  background-color: #555;
+}
+</style><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<button class="home-button" onclick="window.location.href='main.html'">Home</button>
+
+<div class="container">
+  <div class="label">KAI</div>
+  <div class="title">Random Facts</div>
+  <div class="diagonal-lines"></div>
+  <ul class="card_list">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <div id="rectangle"></div>
+  <div class="popup-container">
+    <div class="popup-content">
+      <img src="" alt="Popup Image">
+      <p class="popup-text"></p>
+      <button class="close-popup">×</button>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+<script>
+const images = [
+  "팩트 카드뉴스/Frame 7.png",
+  "팩트 카드뉴스/Frame 8.png",
+  "팩트 카드뉴스/Frame 9.png",
+  "팩트 카드뉴스/Frame 10.png",
+  "팩트 카드뉴스/Frame 11.png",
+  "팩트 카드뉴스/Frame 12.png",
+  "팩트 카드뉴스/Frame 13.png",
+  "팩트 카드뉴스/Frame 14.png",
+  "팩트 카드뉴스/Frame 15.png",
+  "팩트 카드뉴스/Frame 16.png",
+];
+
+document.querySelectorAll('.card_list > li').forEach((card, index) => {
+  card.addEventListener('click', function() {
+    const popup = document.querySelector('.popup-container');
+    const popupImg = popup.querySelector('img');
+    const popupText = popup.querySelector('.popup-text');
+    
+    popupImg.src = images[index];
+    popupText.textContent = `Random Fact ${index + 1}`;
+    popup.classList.add('active');
+  });
+});
+
+document.querySelector('.close-popup').addEventListener('click', function() {
+  document.querySelector('.popup-container').classList.remove('active');
+});
+</script>
+  
+</body>
+</html>

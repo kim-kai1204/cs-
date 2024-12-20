@@ -1,0 +1,180 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global styles */
+html {
+  font-family: Poppins, Arial, sans-serif;
+  color: #f0f0f0;
+}
+body {
+  min-height: 100vh;
+  background: #0b0d15;
+  color: #a2a5b3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  color: white;
+}
+
+/* Animated Container styles */
+.container {
+  background-color: black;
+  width: 1370px;
+  height: 700px;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  top: -60px; 
+  overflow: hidden;
+  animation: container-glow 5s linear infinite;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.container::after, .container::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 10px;
+  border-radius: 20px;
+  animation: spin 3s linear infinite;
+}
+
+.container::before {
+  filter: blur(2rem);
+  opacity: 0.6;
+}
+
+@keyframes container-glow {
+  0%, 100% {
+      box-shadow: 0 0 20px rgba(255, 69, 69, 0.3),
+                  0 0 50px rgba(0, 255, 153, 0.3),
+                  0 0 100px rgba(0, 106, 255, 0.3);
+  }
+  50% {
+      box-shadow: 0 0 40px rgba(255, 0, 149, 0.5),
+                  0 0 80px rgba(0, 255, 153, 0.5),
+                  0 0 150px rgba(0, 106, 255, 0.5);
+  }
+}
+
+@keyframes spin {
+  from {
+      --angle: 0deg;
+  }
+  to {
+      --angle: 360deg;
+  }
+}
+
+/* Button styles */
+.button {
+  position: absolute;
+  bottom: -220px;
+  right: 300px;
+  width: 500px;
+  height: 500px;
+  cursor: pointer;
+  background: url('Frame 2.png') no-repeat center center / contain;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+.button:active {
+  transform: scale(0.95);
+}
+.button:hover {
+  transform: translateY(-170px);
+}
+
+/* 제목 스타일 */
+.title {
+  color: white;
+  font-size: 120px; /* 크기 키움 */
+  font-weight: bold;
+  line-height: 1.1; /* 줄 간격 조정 */
+  text-align: left; /* 왼쪽 정렬 유지 */
+  margin-top: 20px; /* 컨테이너 위쪽과 거리 확보 */
+  margin-left: 20px; /* 좌측 여백 추가 */
+}
+
+.button {
+  position: absolute;
+  bottom: -170px;
+  right: 320px;
+  width: 500px;
+  height: 500px;
+  cursor: pointer;
+  background: url('Frame 2.png') no-repeat center center / contain;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+.button:active {
+  transform: scale(0.95);
+}
+.button:hover {
+  transform: translateY(-170px);
+}
+
+.button2 {
+  position: absolute;
+  bottom: -170px;
+  right: 520px;
+  width: 500px;
+  height: 500px;
+  cursor: pointer;
+  background: url('Frame 4.png') no-repeat center center / contain;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+.button2:active {
+  transform: scale(0.95);
+}
+.button2:hover {
+  transform: translateY(-170px);
+}
+
+.button3 {
+  position: absolute;
+  bottom: -170px;
+  right: 620px;
+  width: 500px;
+  height: 500px;
+  cursor: pointer;
+  background: url('Frame 6.png') no-repeat center center / contain;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+.button3:active {
+  transform: scale(0.95);
+}
+.button3:hover {
+  transform: translateY(-170px);
+}

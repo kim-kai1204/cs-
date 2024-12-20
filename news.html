@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뉴스 아카이브</title>
+    <link rel="stylesheet" href="newstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <h1 class="main-title">RANDOM NEWS</h1>
+        <div class="container">
+            <div class="news-roll" data-image="팩트 카드뉴스/Frame 17.png">
+                <div class="newspaper">
+                    <div class="paper-content">
+                        <div class="news-header">RANDOM NEWS</div>
+                        <div class="news-date">2023.12.21</div>
+                        <div class="news-line"></div>
+                        <div class="news-text">
+                            <h3>Today's Headlines</h3>
+                            <p>Breaking Story</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="news-roll" data-image="팩트 카드뉴스/Frame 18.png">
+                <div class="newspaper">
+                    <div class="paper-content">
+                        <div class="news-header">RANDOM NEWS</div>
+                        <div class="news-date">2023.12.20</div>
+                        <div class="news-line"></div>
+                        <div class="news-text">
+                            <h3>Latest Updates</h3>
+                            <p>Evening Edition</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="news-roll" data-image="팩트 카드뉴스/Frame 19.png">
+                <div class="newspaper">
+                    <div class="paper-content">
+                        <div class="news-header">RANDOM NEWS</div>
+                        <div class="news-date">2023.12.19</div>
+                        <div class="news-line"></div>
+                        <div class="news-text">
+                            <h3>Special Report</h3>
+                            <p>Exclusive Coverage</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="news-roll" data-image="팩트 카드뉴스/Frame 20.png">
+                <div class="newspaper">
+                    <div class="paper-content">
+                        <div class="news-header">RANDOM NEWS</div>
+                        <div class="news-date">2023.12.18</div>
+                        <div class="news-line"></div>
+                        <div class="news-text">
+                            <h3>Local News</h3>
+                            <p>Community Focus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="news-roll" data-image="팩트 카드뉴스/Frame 21.png">
+                <div class="newspaper">
+                    <div class="paper-content">
+                        <div class="news-header">RANDOM NEWS</div>
+                        <div class="news-date">2023.12.17</div>
+                        <div class="news-line"></div>
+                        <div class="news-text">
+                            <h3>Week's Best</h3>
+                            <p>Top Stories</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-image">
+                <img src="" alt="뉴스 이미지">
+            </div>
+        </div>
+    </div>
+    <a href="main.html" class="corner-button">Go to Main</a>
+
+    <script>
+        const newsRolls = document.querySelectorAll('.news-roll');
+        const modal = document.querySelector('.modal');
+        const modalImg = document.querySelector('.modal-image img');
+        const closeBtn = document.querySelector('.close-btn');
+
+        // List of images to choose from
+        const images = [
+            "팩트 카드뉴스/Frame 17.png",
+            "팩트 카드뉴스/Frame 18.png",
+            "팩트 카드뉴스/Frame 19.png",
+            "팩트 카드뉴스/Frame 20.png",
+            "팩트 카드뉴스/Frame 21.png"
+        ];
+
+        newsRolls.forEach(roll => {
+            roll.addEventListener('click', () => {
+                // Select a random image from the list
+                const randomImage = images[Math.floor(Math.random() * images.length)];
+                modalImg.src = randomImage;
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
